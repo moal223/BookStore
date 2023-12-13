@@ -1,0 +1,57 @@
+﻿@model UserRoleViewModel
+@{
+    ViewData["Title"] = "Add User Role";
+    Layout = null;
+    SelectList users = new SelectList(ViewBag.Users);
+    SelectList roles = new SelectList(ViewBag.Roles);
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - BookStore</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/BookStore.styles.css" asp-append-version="true" />
+    <style>
+        .form-register {
+            margin: auto;
+            padding: 20px !important;
+        }
+    </style>
+</head>
+<body>
+    <form id="form" class="needs-validation mt-5 col-4 form-register shadow bg-white p-2" autocomplete="off" asp-controller="Role" asp-action="AddUserRole" method="post">
+        <h2 class="text-center mb-4">Add User Role</h2>
+        <div asp-validation-summary="All" class="text-danger"></div>
+
+        <div class="form-group">
+            <label asp-for="UserName">Select User:</label>
+            <select class="form-control dropdown mb-3" asp-for="UserName" asp-items="users">
+                <option selected value=""></option>
+            </select>
+            <span asp-validation-for="RoleName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="RoleName">Select Role:</label>
+            <select class="form-control dropdown" asp-for="RoleName" asp-items="roles">
+                <option selected value=""></option>
+            </select>
+            <span asp-validation-for="RoleName" class="text-danger"></span>
+        </div>
+
+
+        <button type="submit" class="btn btn-dark btn-block form-control mt-3">Add</button>
+        <div class="log-home d-flex justify-content-between">
+            <a asp-action="AddRole" class="align-self-end">Add Role</a>
+            <a href="/" class="align-self-end">Home Page</a>
+        </div>
+    </form>
+</body>
+
+</html>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>

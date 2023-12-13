@@ -1,0 +1,69 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/BookStore.styles.css" asp-append-version="true" />
+    <title>@ViewData["Title"] - BookStore</title>
+    <style>
+        .container{
+            padding: 10px;
+        }
+
+        .profile {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container shadow bg-white p-3">
+        <div class="row justify-content-around">
+            <div class="profile bg-light col-4 p-2">
+                <div class="mb-3">
+                    <img src="~/Img/UserProfile.jpg" width= "200px" height="200px"/>
+                </div>
+                <div class="fs-4">@User.Identity.Name</div>
+            </div>
+            <div class="profile-info bg-light col-7 p-2">
+                <div class="username p-2">
+                    <label>User Name: </label> 
+                    <input class="form-control" type="text" value="@User.Identity.Name" disabled />
+                </div>
+                <hr />
+                <div class="e-mail p-2">
+                    <label>E-mail: </label>
+                    <input class="form-control" type="email" value="@ViewBag.email" disabled />
+                </div>
+                <hr />
+                @if(User.IsInRole("admin")){
+                <div class="role p-2">
+                    <label>Role: </label>
+                    <input class="form-control" type="text" value="admin" disabled />
+                </div>
+                }
+            </div>
+        </div>
+        <div class="row">
+
+        </div>
+        
+        <form asp-action="Logout" method="post">
+            <input type="submit" value="Logout" class="btn btn-danger" />
+        </form>
+    </div>
+    
+
+</body>
+</html>
+

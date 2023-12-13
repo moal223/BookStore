@@ -1,0 +1,27 @@
+﻿@model List<Book>
+@{
+    ViewData["Title"] = "Home Page";
+    int count = Model.Count;
+    double rows = Math.Ceiling((double)count / 4.0);
+}
+
+<div class="container">
+    @for(var i = 0; i < rows; i++){
+        <div class="row justify-content-between">
+            @for(var j = 0; j < 2; j++){
+                <div class="card col-sm m-2 shadow bg-white p-2">
+                    <img class="card-img-top" src="~/img/cover1.jpg"  alt="Card image">
+                    <div class="card-body">
+                        <h4 class="card-title">@Model[j].Name</h4>
+                        <p class="card-text">$@Model[j].Salary</p>
+                        <a asp-controller="Book" asp-action="BookDetails" asp-route-id="@Model[j].Id" class="btn btn-dark">Book Details</a>
+                    </div>
+                </div>
+            }
+            @for (var j = 0; j < 2; j++)
+            {
+                <div class="card col-sm m-2 shadow bg-white p-2"></div>
+            }
+        </div>
+    }
+ </div>
